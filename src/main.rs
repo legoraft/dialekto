@@ -1,8 +1,9 @@
 use std::{env, fs};
 use parser::parse_cards;
-use rand::prelude::*;
+use randomizer::recite;
 
 mod parser;
+mod randomizer;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
@@ -15,7 +16,5 @@ fn main() {
         .expect("Unable to read file.");
 
     let cards = parse_cards(cards_txt);
-    let random_number = thread_rng().gen_range(0..=cards.len());
-
-    println!("{} is {}!", cards[random_number].term, cards[random_number].definition);
+    recite(cards);
 }
