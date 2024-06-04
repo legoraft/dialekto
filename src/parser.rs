@@ -1,10 +1,10 @@
 #[derive(PartialEq, Debug)]
-struct Card {
+pub struct Card {
     term: String,
     definition: String,
 }
 
-fn parse_cards(cards_txt: &str) -> Vec<Card> {
+pub fn parse_cards(cards_txt: String) -> Vec<Card> {
     let lines: Vec<&str> = cards_txt.trim().lines().collect();
     let mut cards: Vec<Card> = Vec::new();
     
@@ -31,7 +31,7 @@ mod tests {
         let text = "
 hello; bonjour
 goodbye; au revoir
-";
+".to_string();
         let cards = Vec::from([Card{
             term: "hello".to_string(), definition: "bonjour".to_string()
         },
