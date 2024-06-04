@@ -1,23 +1,21 @@
-use std::collections::HashSet;
-
-#[derive(PartialEq, Eq, Hash, Debug)]
+#[derive(PartialEq, Debug)]
 struct Card {
     term: String,
     definition: String,
 }
 
-fn parse_cards(cards_txt: &str) -> HashSet<Card> {
+fn parse_cards(cards_txt: &str) -> Vec<Card> {
     let lines: Vec<&str> = cards_txt.trim().lines().collect();
-    let mut cards = HashSet::new();
+    let mut cards: Vec<Card> = Vec::new();
     
     for line in lines {
         let (term, definition) = line.split_once("; ").unwrap();
         let term = term.to_string();
         let definition = definition.to_string();
         
-        cards.insert(Card{
+        cards.push(Card{
             term,
-            definition
+            definition,
         });
     }
 
@@ -34,7 +32,7 @@ mod tests {
 hello; bonjour
 goodbye; au revoir
 ";
-        let cards = HashSet::from([Card{
+        let cards = Vec::from([Card{
             term: "hello".to_string(), definition: "bonjour".to_string()
         },
         Card{
