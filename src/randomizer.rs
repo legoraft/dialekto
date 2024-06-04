@@ -14,7 +14,7 @@ pub fn recite(cards: Vec<Card>) {
     input.clear();
     io::stdin().read_line(&mut input).unwrap();
 
-    if &input.trim() == definition {
+    if &input.to_lowercase().trim() == definition {
         println!("Well done! {} is indeed {}!", term, definition);
     } else {
         println!("Oh well! {} actually means {}", term, definition)

@@ -5,6 +5,7 @@ pub struct Card {
 }
 
 pub fn parse_cards(cards_txt: String) -> Vec<Card> {
+    let cards_txt = cards_txt.to_lowercase();
     let lines: Vec<&str> = cards_txt.trim().lines().collect();
     let mut cards: Vec<Card> = Vec::new();
     
