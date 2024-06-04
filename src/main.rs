@@ -1,9 +1,11 @@
 use std::{env, fs};
-use parser::parse_cards;
-use randomizer::recite;
+use parser::{parse_cards, Card};
+use randomizer::generate_indices;
+use reciter::recite;
 
 mod parser;
 mod randomizer;
+mod reciter;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
@@ -15,9 +17,10 @@ fn main() {
     let cards_txt = fs::read_to_string(&args[1])
         .expect("Unable to read file.");
 
-    let cards = parse_cards(cards_txt);
-    
-    for n in 0..cards.len() {
-        recite(&cards);
+    let cards: Vec<Card> = parse_cards(cards_txt);
+    let indices: Vec<usize> = generate_indices(cards.len());
+
+    for index in indices {
+        recite(index, &cards);
     }
 }
