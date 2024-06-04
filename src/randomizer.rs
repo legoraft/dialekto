@@ -15,8 +15,8 @@ pub fn recite(cards: Vec<Card>) {
     io::stdin().read_line(&mut input).unwrap();
 
     if &input.trim() == definition {
-        println!("Well done!");
+        println!("Well done! {} is indeed {}!", term, definition);
     } else {
-        println!("Oh well, try again!")
+        println!("Oh well! {} actually means {}", term, definition)
     }
 }
