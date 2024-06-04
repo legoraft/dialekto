@@ -16,5 +16,8 @@ fn main() {
         .expect("Unable to read file.");
 
     let cards = parse_cards(cards_txt);
-    recite(cards);
+    
+    for n in 0..cards.len() {
+        recite(&cards);
+    }
 }

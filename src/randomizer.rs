@@ -3,11 +3,11 @@ use rand::prelude::*;
 
 use crate::parser::Card;
 
-pub fn recite(cards: Vec<Card>) {
-    let random_number = thread_rng().gen_range(0..cards.len());
+pub fn recite(cards: &Vec<Card>) {
+    let next_card = thread_rng().gen_range(0..cards.len());
 
-    let term = &cards[random_number].term;
-    let definition = &cards[random_number].definition;
+    let term = &cards[next_card].term;
+    let definition = &cards[next_card].definition;
 
     println!("What does {:?} mean?", term);
     let mut input = String::new();
