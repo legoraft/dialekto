@@ -1,12 +1,24 @@
-use std::collections::HashMap;
+use std::collections::HashSet;
 
-fn parse_cards(cards_txt: &str) -> HashMap<&str, &str> {
+#[derive(PartialEq, Eq, Hash, Debug)]
+struct Card {
+    term: String,
+    definition: String,
+}
+
+fn parse_cards(cards_txt: &str) -> HashSet<Card> {
     let lines: Vec<&str> = cards_txt.trim().lines().collect();
-    let mut cards: HashMap<&str, &str> = HashMap::new();
+    let mut cards = HashSet::new();
     
     for line in lines {
-        let (word, definition) = line.split_once("; ").unwrap();
-        cards.insert(word, definition);
+        let (term, definition) = line.split_once("; ").unwrap();
+        let term = term.to_string();
+        let definition = definition.to_string();
+        
+        cards.insert(Card{
+            term,
+            definition
+        });
     }
 
     cards
@@ -22,7 +34,12 @@ mod tests {
 hello; bonjour
 goodbye; au revoir
 ";
-        let cards = HashMap::from([("hello", "bonjour"), ("goodbye", "au revoir")]);
+        let cards = HashSet::from([Card{
+            term: "hello".to_string(), definition: "bonjour".to_string()
+        },
+        Card{
+            term: "goodbye".to_string(), definition: "au revoir".to_string()
+        }]);
 
         assert_eq!(cards, parse_cards(text));
     }
