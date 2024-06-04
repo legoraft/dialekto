@@ -1,7 +1,7 @@
 #[derive(PartialEq, Debug)]
 pub struct Card {
-    term: String,
-    definition: String,
+    pub term: String,
+    pub definition: String,
 }
 
 pub fn parse_cards(cards_txt: String) -> Vec<Card> {
