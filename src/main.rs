@@ -19,8 +19,11 @@ fn main() {
 
     let cards: Vec<Card> = parse_cards(cards_txt);
     let indices: Vec<usize> = generate_indices(cards.len());
+    let mut score = 0;
 
     for index in indices {
-        recite(index, &cards);
+        score += recite(index, &cards);
     }
+
+    println!("You got {} words correct!", score);
 }
